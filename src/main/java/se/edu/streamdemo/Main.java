@@ -27,12 +27,21 @@ public class Main {
     }
 
     private static int countDeadlines(ArrayList<Task> tasksData) {
+        //System.out.println("Counting deadlines using iteration ...");
         int count = 0;
         for (Task t : tasksData) {
             if (t instanceof Deadline) {
                 count++;
             }
         }
+        return count;
+    }
+
+    //Anonymous Function
+    private static int countDeadlinesUsingStream(ArrayList<Task> tasks){
+        //System.out.println("Counting Deadlines using stream ...");
+        int count = (int) tasks.stream().filter((t) -> t instanceof Deadline)
+                .count(); // Returns a long value hence need to typecast to int
         return count;
     }
 
@@ -43,12 +52,26 @@ public class Main {
         }
     }
 
+    public static void printAllDataUsingStreams(ArrayList<Task> tasks){
+        System.out.println("printing data using stream ...");
+        tasks.stream()
+                .forEach(System.out::println);
+    }
+
     public static void printDeadlines(ArrayList<Task> tasksData) {
+        System.out.println("printing deadlines using iteration ...");
         for (Task t : tasksData) {
             if (t instanceof Deadline) {
                 System.out.println(t);
             }
         }
+    }
+
+    public static void printDeadlinesUsingStream (ArrayList<Task> tasks){
+        System.out.println("printing deadlines using stream ...");
+        tasks.stream()
+                .filter((t) -> t instanceof Deadline)
+                .forEach(System.out::println);
     }
 
 }
